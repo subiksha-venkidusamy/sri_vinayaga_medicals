@@ -9,7 +9,7 @@ require("dotenv").config();
 const app = express();
 
 const allowedOrigin = process.env.FRONTEND_URL;
-
+console.log("Allowed Origin:", allowedOrigin);
 app.use(
   cors({
     origin: allowedOrigin,
