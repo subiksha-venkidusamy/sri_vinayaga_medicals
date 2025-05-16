@@ -7,7 +7,13 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 require("dotenv").config();
 const app = express();
-app.use(cors());
+const allowedOrigin = process.env.FRONTEND_URL;
+app.use(
+  cors({
+    origin: allowedOrigin,
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
 const JWT_SECRET = process.env.JWT_SECRET;
