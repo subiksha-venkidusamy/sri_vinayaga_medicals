@@ -8,9 +8,11 @@ const axios = require("axios");
 require("dotenv").config();
 const app = express();
 
+const allowedOrigin = process.env.FRONTEND_URL;
+
 app.use(
   cors({
-    origin: "*",
+    origin: allowedOrigin,
     credentials: true,
   })
 );
