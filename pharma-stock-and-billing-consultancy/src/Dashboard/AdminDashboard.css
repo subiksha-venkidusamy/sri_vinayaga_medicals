@@ -1,0 +1,492 @@
+/* General Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.admin-dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.admin-sidebar {
+  background-color: #d3e3f3; /* Dark background for contrast */
+  color: #ecf0f1; /* Light text for contrast */
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+
+.admin-sidebar-button {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  background: #8e24aa;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+  text-align: left; /* Align text to the left */
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 0%;
+}
+
+.dashboard-logo {
+  width: 200px;
+  height: 140px;
+}
+
+.admin-dashboard-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff; /* White text for contrast */
+  text-align: center;
+}
+
+.role-title {
+  font-size: 1.1em;
+  color: #ddd;
+  margin-bottom: 20px;
+  margin-top:0px;
+}
+
+
+.admin-sidebar-button svg {
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+.admin-sidebar-button:hover,
+.admin-sidebar-button.active {
+  background: #4a148c;
+  transform: scale(1.05);
+
+}
+
+.admin-sidebar button {
+  width: 100%;
+}
+
+.admin-content {
+  flex-grow: 1;
+  padding: 20px;
+   /* Adjust for sidebar width */
+  background-color: #f4f6f8; /* Light gray background */
+  min-height: 100vh; /* Ensure it occupies the full height */
+  overflow-y: auto; /* Enable scrolling for long content */
+  width: 100%; /* Ensure the content area spans the full width */
+}
+
+/* Card (Parent Container for Table) */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 1200px; /* Ensure the card spans the full width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+
+
+.medicine-table,
+.manage-workers-table,
+.batch-table,
+.manage-suppliers-table,
+.transactions-table,
+.medicine-requests-table,
+.expiry-table,
+.expired-medicine-table {
+  width: auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden; /* To contain the border-radius of header and body */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.medicine-table{
+  table-layout: fixed;
+}
+
+.medicine-table thead,
+.manage-workers-table thead,
+.batch-table thead,
+.manage-suppliers-table thead,
+.transactions-table thead,
+.medicine-requests-table thead,
+.expiry-table thead,
+.expired-medicine-table thead {
+  background-color: #f0f0f0;
+  color: #555;
+  font-weight: bold;
+}
+
+.medicine-table th,
+.medicine-table td,
+.manage-workers-table th,
+.manage-workers-table td,
+.batch-table th,
+.batch-table td,
+.manage-suppliers-table th,
+.manage-suppliers-table td,
+.transactions-table th,
+.transactions-table td,
+.medicine-requests-table th,
+.medicine-requests-table td,
+.expiry-table th,
+.expiry-table td,
+.expired-medicine-table th,
+.expired-medicine-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.medicine-table tbody tr:nth-child(even),
+.manage-workers-table tbody tr:nth-child(even),
+.batch-table tbody tr:nth-child(even),
+.manage-suppliers-table tbody tr:nth-child(even),
+.transactions-table tbody tr:nth-child(even),
+.medicine-requests-table tbody tr:nth-child(even),
+.expiry-table tbody tr:nth-child(even),
+.expired-medicine-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.medicine-table tbody tr:hover,
+.manage-workers-table tbody tr:hover,
+.batch-table tbody tr:hover,
+.manage-suppliers-table tbody tr:hover,
+.transactions-table tbody tr:hover,
+.medicine-requests-table tbody tr:hover,
+.expiry-table tbody tr:hover,
+.expired-medicine-table tbody tr:hover {
+  background-color: #eee;
+}
+
+/* Form Styles */
+.card input[type="text"],
+.card input[type="number"],
+.card input[type="email"],
+.card input[type="password"],
+.card input[type="date"],
+.card select {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.card select {
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%2334495e" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1em;
+}
+
+.card input[type="text"]:focus,
+.card input[type="number"]:focus,
+.card input[type="email"]:focus,
+.card input[type="password"]:focus,
+.card input[type="date"]:focus,
+.card select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.card button {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #219653;
+}
+
+.manage-workers-form,
+.manage-suppliers-form,
+.batch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.manage-workers-form button,
+.manage-suppliers-form button,
+.batch-form button {
+  width: auto;
+  align-self: flex-start;
+}
+
+/* Action Buttons */
+.delete-btn,
+.edit-btn,
+.approve-btn,
+.reject-btn {
+  background-color: #c0392b;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #f39c12;
+}
+
+.approve-btn {
+  background-color: #27ae60;
+}
+
+.reject-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #a93226;
+}
+
+.edit-btn:hover {
+  background-color: #e88c0e;
+}
+
+.approve-btn:hover {
+  background-color: #219653;
+}
+
+.reject-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-icon {
+  color: #777;
+  padding: 5px;
+}
+
+.search-box input[type="text"] {
+  border: none;
+  padding: 8px;
+  font-size: 1em;
+  width: calc(100% - 30px);
+  outline: none;
+}
+
+/* Batch Form Modal */
+.batch-form {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.batch-form h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.batch-form button[type="submit"],
+.batch-form button[type="button"] {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.batch-form button[type="submit"] {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+}
+
+.batch-form button[type="submit"]:hover {
+  background-color: #219653;
+}
+
+.batch-form button[type="button"] {
+  background-color: #777;
+  color: #fff;
+  border: none;
+}
+
+.batch-form button[type="button"]:hover {
+  background-color: #555;
+}
+
+/* Sales Overview Chart */
+.sales-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 300px;
+}
+
+/* Transactions */
+.transactions-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-container h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.transaction-search {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.transaction-search:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.transaction-details-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 300px;
+}
+
+.transaction-details-modal h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.transaction-details-modal p {
+  margin-bottom: 10px;
+}
+
+.transaction-details-modal h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.transaction-details-modal ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.transaction-details-modal li {
+  margin-bottom: 5px;
+}
+
+.transaction-details-modal button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.transaction-details-modal button:hover {
+  background-color: #2980b9;
+}
+
+/* Medicine Requests */
+.medicine-requests-table .status-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9em;
+}
+
+.medicine-requests-table .status-badge.pending {
+  background-color: #f39c12;
+}
+
+.medicine-requests-table .status-badge.approved {
+  background-color: #27ae60;
+}
+
+.medicine-requests-table .status-badge.rejected {
+  background-color: #e74c3c;
+}
+
+/* Expiry */
+.expiry-table th,
+.expiry-table td,
+.expired-medicine-table th,
+.expired-medicine-table td {
+  white-space: nowrap; /* Prevent text wrapping in expiry tables */
+}

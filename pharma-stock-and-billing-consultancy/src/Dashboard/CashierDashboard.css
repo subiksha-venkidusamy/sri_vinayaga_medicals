@@ -1,0 +1,600 @@
+/* Main Container */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to right, #f3e5f5, #e1bee7);
+  font-family: "Arial", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(to bottom, #6a1b9a, #4a148c);
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ffffff55;
+  padding-bottom: 10px;
+}
+
+.sidebar-button {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  background: #8e24aa;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.sidebar-button.active {
+  background: #4a148c;
+  transform: scale(1.05);
+}
+
+.sidebar-button:hover {
+  background: #7b1fa2;
+}
+
+/* Content Section */
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Input Fields */
+input {
+  width: 90%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  margin: 12px;
+  font-size: 16px;
+  transition: 0.3s;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+  border-color: #6a1b9a;
+  outline: none;
+  box-shadow: 0 0 8px rgba(106, 27, 154, 0.5);
+}
+
+/* Medicine & Request Items */
+.medicine-item {
+  padding: 14px;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.medicine-item p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.medicine-item.expired {
+  background: #ffcccc;
+  border-left: 5px solid darkred;
+}
+
+.medicine-item button {
+  padding: 8px 12px;
+  background-color: #388e3c;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.medicine-item button:hover {
+  background-color: #2e7d32;
+}
+
+.medicine-item.expired button {
+  background-color: #d32f2f;
+}
+
+.medicine-item.expired button:hover {
+  background-color: #c62828;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px;
+  background: #1976d2;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.bill-summary-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.bill-summary-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.bill-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.store-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.store-address {
+  font-size: 1rem;
+  color: #555;
+}
+
+.bill-date {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.bill-table th,
+.bill-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.bill-table th {
+  background-color: #f0f0f0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.bill-table td {
+  font-size: 1rem;
+}
+
+.item-column {
+  width: 40%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.qty-column,
+.price-column,
+.total-column {
+  width: 20%;
+}
+
+.bill-footer {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.bill-footer p {
+  margin: 5px 0;
+}
+
+.bill-footer strong {
+  font-weight: bold;
+}
+
+.bill-footer .total-amount {
+  font-size: 1.3rem;
+  color: #2a9d8f;
+}
+
+.bill-footer .total-gst {
+  color: #e76f51;
+}
+
+.bill-footer .total-bill {
+  font-size: 1.4rem;
+  color: #264653;
+}
+
+/* Floating suggestion container */
+.suggestion-container {
+  position: absolute;
+  top: 45px; /* Adjust this based on the input height */
+  left: 20px;
+  width: 91%; /* Ensure it takes the full width of the input */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none; /* Initially hidden */
+}
+
+.suggestion-container.show {
+  display: block; /* Show when search query has results */
+}
+
+.suggestion-item {
+  padding: 12px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-item:hover {
+  background-color: #f4f4f4;
+}
+
+.suggestion-item .details {
+  font-size: 14px;
+  color: #666;
+}
+
+.suggestion-item .stock {
+  font-size: 14px;
+  color: #388e3c;
+  font-weight: bold;
+}
+
+.suggestion-item .price {
+  font-size: 14px;
+  color: #e76f51;
+  font-weight: bold;
+}
+
+.suggestion-container.no-results {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+.customer-bill-details {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.customer-bill-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.success-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+}
+
+.success-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+}
+
+.success-icon {
+  margin-bottom: 15px;
+}
+
+.success-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+}
+
+.success-message {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.invoice-details {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  margin: 15px 0;
+}
+
+.invoice-details p {
+  margin: 5px 0;
+}
+
+.thank-you {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.done-button {
+  background: green;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.done-button:hover {
+  background: darkgreen;
+}
+
+.transactions-container {
+  margin-top: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.transactions-table th {
+  background: #007bff;
+  color: white;
+}
+
+.transactions-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.transactions-table tbody tr:hover {
+  background: #e2e6ea;
+}
+
+/* Proceed to Billing Button */
+.proceed-to-bill-btn {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  margin: 15px auto;
+}
+
+.proceed-to-bill-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.proceed-to-bill-btn:disabled {
+  background-color: #b0c4de;
+  cursor: not-allowed;
+}
+
+/* Confirm Payment Button */
+.confirm-payment-button {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  background-color: #28a745; /* Green */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  margin: 15px auto;
+}
+
+.confirm-payment-button:hover {
+  background-color: #1e7e34;
+  transform: translateY(-2px);
+}
+
+.confirm-payment-button:disabled {
+  background-color: #98d8aa;
+  cursor: not-allowed;
+}
+
+.transaction-details-modal {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+.transaction-details-modal h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.transaction-details-modal p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.transaction-details-modal ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.transaction-details-modal ul li {
+  font-size: 14px;
+  color: #444;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.transaction-details-modal ul li:last-child {
+  border-bottom: none;
+}
+
+.transaction-details-modal .total-section {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin-top: 12px;
+}
+
+.transaction-details-modal button {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.transaction-details-modal button:hover {
+  background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .transaction-details-modal {
+    width: 90%;
+    max-width: 350px;
+  }
+}
+
+/* Logo Styling */
+.dashboard-logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Title Styling */
+.cashier-dashboard-title {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #ffffff55;
+  padding-bottom: 10px;
+}
+/* Download Receipt Button */
+/* Download Receipt Button */
+.download-receipt-btn {
+  position: fixed; /* Fix the button's position relative to the viewport */
+  bottom: 20px; /* Distance from the bottom */
+  right: 20px; /* Distance from the right */
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 24px;
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: none; /* Hide by default */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.download-receipt-btn.show {
+  display: block; /* Show when billing is active */
+}
+
+.download-receipt-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.download-receipt-btn:disabled {
+  background-color: #b0c4de; /* Light blue for disabled state */
+  cursor: not-allowed;
+}
