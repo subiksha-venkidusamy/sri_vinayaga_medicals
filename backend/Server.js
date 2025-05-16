@@ -5,13 +5,12 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
-
+require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const JWT_SECRET =
-  "11a78abe5b06c97ed3caca235459292af353c693049c44ff8b7cd988167b1784e2efe4ac7ba15a67723c69ff3a552198bfa75d2712c35b1dc49b0d85446a7824";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // MongoDB Connection
 mongoose.connect("mongodb://localhost:27017/vinayaga-medical", {
@@ -773,7 +772,7 @@ app.get("/api/demand-prediction", async (req, res) => {
   }
 });
 // Start Server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

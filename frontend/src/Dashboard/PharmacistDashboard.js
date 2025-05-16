@@ -60,7 +60,7 @@ const PharmacistDashboard = () => {
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/medicines");
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/medicines`);
         if (!response.ok) {
           throw new Error("Failed to fetch medicines");
         }
@@ -83,7 +83,7 @@ const PharmacistDashboard = () => {
     const fetchExpiryAlerts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/expiry-alerts"
+          `${process.env.REACT_APP_BACKEND_URL}/api/expiry-alerts`
         );
         const { expiringSoon, expired } = response.data;
 
@@ -102,7 +102,7 @@ const PharmacistDashboard = () => {
 
   const fetchStocks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/medicines");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/medicines`);
       console.log("Stocks fetched:", response.data);
       setStocks(response.data); // Set the fetched data into the state
     } catch (error) {
@@ -113,7 +113,7 @@ const PharmacistDashboard = () => {
   const fetchExpiryAlerts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/expiry-alerts"
+        `${process.env.REACT_APP_BACKEND_URL}/api/expiry-alerts`
       );
       const { expiringSoon, expired } = response.data;
 
@@ -127,7 +127,7 @@ const PharmacistDashboard = () => {
   const fetchRequests = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/medicine-requests"
+        `${process.env.REACT_APP_BACKEND_URL}/api/medicine-requests`
       );
       setRequests(response.data);
     } catch (error) {
@@ -155,7 +155,7 @@ const PharmacistDashboard = () => {
     e.preventDefault();
 
     try {
-      const url = "http://localhost:5000/api/batches"; // Always use POST for adding new batches
+      const url = `${process.env.REACT_APP_BACKEND_URL}/api/batches`; // Always use POST for adding new batches
 
       const response = await fetch(url, {
         method: "POST", // Always POST since we're not editing
@@ -202,7 +202,9 @@ const PharmacistDashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this batch?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/batches/${id}`);
+        await axios.delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/batches/${id}`
+        );
         fetchBatches(); // Refresh list
       } catch (error) {
         console.error("Error deleting batch:", error);
@@ -212,7 +214,7 @@ const PharmacistDashboard = () => {
 
   const fetchBatches = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/batches");
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/batches`);
       setBatches(res.data);
     } catch (error) {
       console.error("Error fetching batches:", error);
@@ -221,7 +223,7 @@ const PharmacistDashboard = () => {
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/suppliers");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/suppliers`);
       setSuppliers(response.data);
     } catch (error) {
       console.error("Error fetching suppliers:", error);

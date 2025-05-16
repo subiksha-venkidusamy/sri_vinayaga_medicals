@@ -32,7 +32,7 @@ const CashierDashboard = () => {
   const fetchMedicines = async (query) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/search-medicine",
+        `${process.env.REACT_APP_BACKEND_URL}/api/search-medicine`,
         {
           params: { name: query },
         }
@@ -54,7 +54,7 @@ const CashierDashboard = () => {
   useEffect(() => {
     if (activeTab === "Transactions") {
       axios
-        .get("http://localhost:5000/api/invoices")
+        .get(`${process.env.REACT_APP_BACKEND_URL}/api/invoices`)
         .then((response) => setTransactions(response.data))
         .catch((error) => console.error("Error fetching transactions:", error));
     }
@@ -75,7 +75,7 @@ const CashierDashboard = () => {
   const handleTransactionClick = async (billId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/invoice-details/${billId}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/invoice-details/${billId}`
       );
       setSelectedTransaction(response.data); // Store full details in state
     } catch (err) {
@@ -98,7 +98,7 @@ const CashierDashboard = () => {
 
       // Step 1: Fetch the medicine ID from the Medicine table
       const medicineResponse = await axios.get(
-        `http://localhost:5000/api/search-medicine?name=${medicineName}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/search-medicine?name=${medicineName}`
       );
 
       console.log("Medicine Response:", medicineResponse.data); // Debugging
@@ -113,7 +113,7 @@ const CashierDashboard = () => {
 
       // Step 2: Fetch the price and stock details from the MedicineBatch table
       const batchResponse = await axios.get(
-        `http://localhost:5000/api/medicine-batch/${medicineId}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/medicine-batch/${medicineId}`
       );
 
       console.log("Batch Response:", batchResponse.data); // Debugging
@@ -247,7 +247,7 @@ const CashierDashboard = () => {
 
       // Send the invoice data to the backend
       await axios.post(
-        "http://localhost:5000/api/generate-invoice",
+        `${process.env.REACT_APP_BACKEND_URL}/api/generate-invoice`,
         invoiceData
       );
 

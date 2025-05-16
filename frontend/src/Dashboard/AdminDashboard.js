@@ -131,7 +131,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchMedicines = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/medicines");
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/medicines`);
         if (!response.ok) {
           throw new Error("Failed to fetch medicines");
         }
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
     const fetchDemandData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/demand-prediction"
+          `${process.env.REACT_APP_BACKEND_URL}/api/demand-prediction`
         );
         const data = await response.json();
         console.log("Demand Data:", data); // Log the response to debug
@@ -173,7 +173,9 @@ const AdminDashboard = () => {
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/suppliers");
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/suppliers`
+      );
       setSuppliers(response.data);
     } catch (error) {
       console.error("Error fetching suppliers:", error);
@@ -187,7 +189,7 @@ const AdminDashboard = () => {
   const handleSupplierSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/suppliers", newSupplier);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/suppliers`, newSupplier);
       alert("Supplier added successfully!");
       setNewSupplier({
         name: "",
@@ -209,7 +211,7 @@ const AdminDashboard = () => {
     if (!updatedName) return;
 
     try {
-      await axios.put(`http://localhost:5000/api/suppliers/${supplierId}`, {
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/suppliers/${supplierId}`, {
         name: updatedName,
       });
       alert("Supplier updated successfully!");
@@ -223,7 +225,8 @@ const AdminDashboard = () => {
   const handleDeleteSupplier = async (supplierId) => {
     if (window.confirm("Are you sure you want to delete this supplier?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/suppliers/${supplierId}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/suppliers/${supplierId}`
+        );
         alert("Supplier deleted successfully!");
         fetchSuppliers();
       } catch (error) {
@@ -235,7 +238,7 @@ const AdminDashboard = () => {
 
   const fetchStocks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/medicines");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/medicines`);
       console.log("Stocks fetched:", response.data);
       setStocks(response.data); // Set the fetched data into the state
     } catch (error) {
@@ -245,7 +248,7 @@ const AdminDashboard = () => {
 
   const fetchWorkers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/workers");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/workers`);
       setWorkers(response.data);
     } catch (error) {
       console.error("Error fetching workers:", error);
@@ -259,7 +262,7 @@ const AdminDashboard = () => {
   const handleWorkerSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/worker", newWorker);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/worker`, newWorker);
       alert("Worker added successfully!");
       setNewWorker({ name: "", email: "", password: "", role: "Cashier" });
       fetchWorkers();
@@ -271,7 +274,7 @@ const AdminDashboard = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/invoices");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/invoices`);
       setInvoices(response.data);
       calculateSalesOverview(response.data); // Call function here
     } catch (error) {
@@ -282,7 +285,7 @@ const AdminDashboard = () => {
   const fetchExpiryAlerts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/expiry-alerts"
+        `${process.env.REACT_APP_BACKEND_URL}/api/expiry-alerts`
       );
       const { expiringSoon, expired } = response.data;
 
@@ -296,7 +299,7 @@ const AdminDashboard = () => {
   const fetchRequests = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/medicine-requests"
+        `${process.env.REACT_APP_BACKEND_URL}/api/medicine-requests`
       );
       setRequests(response.data);
     } catch (error) {
@@ -307,7 +310,7 @@ const AdminDashboard = () => {
   const deleteMedicine = async (id) => {
     if (window.confirm("Are you sure you want to delete this medicine?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/delete-medicine/${id}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/delete-medicine/${id}`);
         fetchExpiryAlerts(); // Refresh data after deletion
         fetchStocks();
       } catch (error) {
@@ -337,7 +340,7 @@ const AdminDashboard = () => {
   const handleApprove = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/approve-request/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/approve-request/${id}`,
         { method: "PUT" }
       );
       if (response.ok) {
@@ -354,7 +357,7 @@ const AdminDashboard = () => {
   const handleReject = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reject-request/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/reject-request/${id}`,
         { method: "PUT" }
       );
       if (response.ok) {
@@ -414,7 +417,7 @@ const AdminDashboard = () => {
         totalQuantity, // Include total quantity in the payload
       };
 
-      await axios.post("http://localhost:5000/api/add-medicine", payload);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/add-medicine`, payload);
 
       fetchStocks();
 
@@ -437,7 +440,7 @@ const AdminDashboard = () => {
   const handleTransactionClick = async (billId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/invoice-details/${billId}`
+        `${process.env.REACT_APP_BACKEND_URL}/api/invoice-details/${billId}`
       );
       setSelectedTransaction(response.data); // Store full details in state
     } catch (err) {
@@ -460,9 +463,12 @@ const AdminDashboard = () => {
     const newPassword = prompt("Enter new Password: ");
     console.log(newPassword);
     try {
-      await axios.put(`http://localhost:5000/api/update-worker/${workerId}`, {
-        newPassword: newPassword,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/api/update-worker/${workerId}`,
+        {
+          newPassword: newPassword,
+        }
+      );
       alert("successful updated");
     } catch (error) {
       console.error("Error updating worker:", error);
@@ -473,7 +479,7 @@ const AdminDashboard = () => {
     if (window.confirm("Are you sure you want to delete this worker?")) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/delete-worker/${workerId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/delete-worker/${workerId}`
         );
         fetchWorkers();
       } catch (error) {
@@ -484,7 +490,7 @@ const AdminDashboard = () => {
 
   const fetchBatches = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/batches");
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/batches`);
       setBatches(res.data);
     } catch (error) {
       console.error("Error fetching batches:", error);
@@ -494,7 +500,9 @@ const AdminDashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this batch?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/batches/${id}`);
+        await axios.delete(
+          `${process.env.REACT_APP_BACKEND_URL}/api/batches/${id}`
+        );
         fetchBatches(); // Refresh list
       } catch (error) {
         console.error("Error deleting batch:", error);
@@ -522,7 +530,7 @@ const AdminDashboard = () => {
     e.preventDefault();
 
     try {
-      const url = "http://localhost:5000/api/batches"; // Always use POST for adding new batches
+      const url = `${process.env.REACT_APP_BACKEND_URL}/api/batches`; // Always use POST for adding new batches
 
       const response = await fetch(url, {
         method: "POST", // Always POST since we're not editing
@@ -673,7 +681,7 @@ const AdminDashboard = () => {
           <FaClock /> Expiry
         </button>
         <button>
-            <LogoutButton />
+          <LogoutButton />
         </button>
       </div>
       <div>
@@ -846,90 +854,90 @@ const AdminDashboard = () => {
 
           {activeTab === "manageWorkers" && (
             <div className="card card-green">
-            <div className="manage-workers-container">
-              <h3>Manage Workers</h3>
-              <form
-                className="manage-workers-form"
-                onSubmit={handleWorkerSubmit}
-              >
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Worker Name"
-                  value={newWorker.name}
-                  onChange={handleWorkerChange}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Worker Email"
-                  value={newWorker.email}
-                  onChange={handleWorkerChange}
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={newWorker.password}
-                  onChange={handleWorkerChange}
-                  required
-                />
-                <select
-                  name="role"
-                  value={newWorker.role}
-                  onChange={handleWorkerChange}
+              <div className="manage-workers-container">
+                <h3>Manage Workers</h3>
+                <form
+                  className="manage-workers-form"
+                  onSubmit={handleWorkerSubmit}
                 >
-                  <option value="Cashier">Cashier</option>
-                  <option value="Pharmacist">Pharmacist</option>
-                </select>
-                <button
-                  type="submit"
-                  className="btn btn-green"
-                  style={{ width: "20%" }}
-                >
-                  Add Worker
-                </button>
-              </form>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Worker Name"
+                    value={newWorker.name}
+                    onChange={handleWorkerChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Worker Email"
+                    value={newWorker.email}
+                    onChange={handleWorkerChange}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={newWorker.password}
+                    onChange={handleWorkerChange}
+                    required
+                  />
+                  <select
+                    name="role"
+                    value={newWorker.role}
+                    onChange={handleWorkerChange}
+                  >
+                    <option value="Cashier">Cashier</option>
+                    <option value="Pharmacist">Pharmacist</option>
+                  </select>
+                  <button
+                    type="submit"
+                    className="btn btn-green"
+                    style={{ width: "20%" }}
+                  >
+                    Add Worker
+                  </button>
+                </form>
 
-              <table className="manage-workers-table">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th> {/* New column for actions */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {workers.map((worker) => (
-                    <tr key={worker._id}>
-                      <td>{worker.name}</td>
-                      <td>{worker.email}</td>
-                      <td>{worker.role}</td>
-                      <td>
-                        {/* Edit Button */}
-                        <button
-                          className="edit-btn"
-                          onClick={() => handleEditWorker(worker._id)}
-                        >
-                          ✏️ Edit
-                        </button>
-
-                        {/* Delete Button */}
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDeleteWorker(worker._id)}
-                        >
-                          ❌ Delete
-                        </button>
-                      </td>
+                <table className="manage-workers-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Actions</th> {/* New column for actions */}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {workers.map((worker) => (
+                      <tr key={worker._id}>
+                        <td>{worker.name}</td>
+                        <td>{worker.email}</td>
+                        <td>{worker.role}</td>
+                        <td>
+                          {/* Edit Button */}
+                          <button
+                            className="edit-btn"
+                            onClick={() => handleEditWorker(worker._id)}
+                          >
+                            ✏️ Edit
+                          </button>
+
+                          {/* Delete Button */}
+                          <button
+                            className="delete-btn"
+                            onClick={() => handleDeleteWorker(worker._id)}
+                          >
+                            ❌ Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
 
@@ -1225,102 +1233,104 @@ const AdminDashboard = () => {
 
           {activeTab === "Transactions" && (
             <div className="card card-yellow">
-            <div className="transactions-container">
-              <h3>Transactions</h3>
-              <input
-                type="text"
-                placeholder="Search by ID, Name, Mobile, Date"
-                value={transactionSearch}
-                onChange={(e) => setTransactionSearch(e.target.value)}
-                className="transaction-search"
-              />
+              <div className="transactions-container">
+                <h3>Transactions</h3>
+                <input
+                  type="text"
+                  placeholder="Search by ID, Name, Mobile, Date"
+                  value={transactionSearch}
+                  onChange={(e) => setTransactionSearch(e.target.value)}
+                  className="transaction-search"
+                />
 
-              {invoices.length === 0 ? (
-                <p>No transactions found.</p>
-              ) : (
-                <table className="transactions-table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Customer Name</th>
-                      <th>Phone</th>
-                      <th>Total Bill (₹)</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredTransactions.length > 0 ? (
-                      filteredTransactions.map((txn, index) => (
-                        <tr key={index}>
-                          <td
-                            style={{
-                              color: "blue",
-                              cursor: "pointer",
-                              textDecoration: "underline",
-                            }}
-                            onClick={() => handleTransactionClick(txn.billId)}
-                          >
-                            {txn.billId}
-                          </td>
-                          <td>{txn.customerName}</td>
-                          <td>{txn.customerPhone}</td>
-                          <td>₹{txn.totalBill}</td>
-                          <td>{new Date(txn.date).toLocaleDateString()}</td>
-                          <td>{new Date(txn.date).toLocaleTimeString()}</td>
-                        </tr>
-                      ))
-                    ) : (
+                {invoices.length === 0 ? (
+                  <p>No transactions found.</p>
+                ) : (
+                  <table className="transactions-table">
+                    <thead>
                       <tr>
-                        <td colSpan="6">No matching transactions found.</td>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Phone</th>
+                        <th>Total Bill (₹)</th>
+                        <th>Date</th>
+                        <th>Time</th>
                       </tr>
-                    )}
-                  </tbody>
-                </table>
-              )}
+                    </thead>
+                    <tbody>
+                      {filteredTransactions.length > 0 ? (
+                        filteredTransactions.map((txn, index) => (
+                          <tr key={index}>
+                            <td
+                              style={{
+                                color: "blue",
+                                cursor: "pointer",
+                                textDecoration: "underline",
+                              }}
+                              onClick={() => handleTransactionClick(txn.billId)}
+                            >
+                              {txn.billId}
+                            </td>
+                            <td>{txn.customerName}</td>
+                            <td>{txn.customerPhone}</td>
+                            <td>₹{txn.totalBill}</td>
+                            <td>{new Date(txn.date).toLocaleDateString()}</td>
+                            <td>{new Date(txn.date).toLocaleTimeString()}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="6">No matching transactions found.</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                )}
 
-              {/* Show transaction details when a transaction is selected */}
-              {selectedTransaction && (
-                <div className="transaction-details-modal">
-                  <h2>Transaction Details</h2>
-                  <p>
-                    <strong>Invoice ID:</strong> {selectedTransaction.billId}
-                  </p>
-                  <p>
-                    <strong>Customer Name:</strong>{" "}
-                    {selectedTransaction.customerName}
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> {selectedTransaction.customerPhone}
-                  </p>
-                  <p>
-                    <strong>Total Amount:</strong> ₹
-                    {selectedTransaction.totalAmount}
-                  </p>
-                  <p>
-                    <strong>Total GST:</strong> ₹{selectedTransaction.totalGST}
-                  </p>
-                  <p>
-                    <strong>Total Bill:</strong> ₹
-                    {selectedTransaction.totalBill}
-                  </p>
+                {/* Show transaction details when a transaction is selected */}
+                {selectedTransaction && (
+                  <div className="transaction-details-modal">
+                    <h2>Transaction Details</h2>
+                    <p>
+                      <strong>Invoice ID:</strong> {selectedTransaction.billId}
+                    </p>
+                    <p>
+                      <strong>Customer Name:</strong>{" "}
+                      {selectedTransaction.customerName}
+                    </p>
+                    <p>
+                      <strong>Phone:</strong>{" "}
+                      {selectedTransaction.customerPhone}
+                    </p>
+                    <p>
+                      <strong>Total Amount:</strong> ₹
+                      {selectedTransaction.totalAmount}
+                    </p>
+                    <p>
+                      <strong>Total GST:</strong> ₹
+                      {selectedTransaction.totalGST}
+                    </p>
+                    <p>
+                      <strong>Total Bill:</strong> ₹
+                      {selectedTransaction.totalBill}
+                    </p>
 
-                  <h3>Medicines Purchased:</h3>
-                  <ul>
-                    {selectedTransaction.medicines.map((med, i) => (
-                      <li key={i}>
-                        {med.medicineName} - {med.quantity} x ₹
-                        {med.sellingPrice} = ₹{med.totalPrice}
-                      </li>
-                    ))}
-                  </ul>
+                    <h3>Medicines Purchased:</h3>
+                    <ul>
+                      {selectedTransaction.medicines.map((med, i) => (
+                        <li key={i}>
+                          {med.medicineName} - {med.quantity} x ₹
+                          {med.sellingPrice} = ₹{med.totalPrice}
+                        </li>
+                      ))}
+                    </ul>
 
-                  <button onClick={() => setSelectedTransaction(null)}>
-                    Close
-                  </button>
-                </div>
-              )}
-            </div>
+                    <button onClick={() => setSelectedTransaction(null)}>
+                      Close
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
