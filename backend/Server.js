@@ -8,14 +8,12 @@ const axios = require("axios");
 require("dotenv").config();
 const app = express();
 const allowedOrigin = process.env.FRONTEND_URL;
-console.log("Allowed Origin:", allowedOrigin);
-app.use(
-  cors({
-    origin: allowedOrigin,
-    credentials: true,
-  })
-);
+console.log("Allowed origin:", process.env.FRONTEND_URL);
 
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
 app.use(bodyParser.json());
 
 const JWT_SECRET = process.env.JWT_SECRET;
