@@ -7,8 +7,7 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 require("dotenv").config();
 const app = express();
-const allowedOrigin = process.env.FRONTEND_URL;
-console.log("Allowed Origin:", allowedOrigin);
+
 app.use(cors());
 
 app.use(bodyParser.json());
