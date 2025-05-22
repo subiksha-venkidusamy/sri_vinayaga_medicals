@@ -18,7 +18,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
 mongoose.connect("mongodb://localhost:27017/vinayaga-medical", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  tls: true  // explicitly enable TLS
 });
+
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
