@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://subierode2005:d8JB8BlCp7t6iInU@cluster0.wqewcbr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect("mongodb://localhost:27017/vinayaga-medical", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
