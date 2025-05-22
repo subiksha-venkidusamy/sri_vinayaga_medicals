@@ -18,7 +18,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
 mongoose.connect("mongodb+srv://subierode2005:d8JB8BlCp7t6iInU@cluster0.wqewcbr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  tls: true  // explicitly enable TLS
 });
+
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
